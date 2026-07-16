@@ -1,1 +1,17 @@
+<<<<<<< HEAD
 node_modules
+=======
+# dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# environment
+.env
+.env.local
+
+# logs
+*.log
+>>>>>>> a7be7250612f9874ac34816f576a3a3972567caf

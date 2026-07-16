@@ -1,109 +1,91 @@
-import { motion } from "framer-motion";
+import Image from "next/image";
+import { CheckCircle2, GraduationCap, Target } from "lucide-react";
 
-import { Container } from "@/components/ui/container";
-import { SectionHeading } from "@/components/ui/section-heading";
 import { Card, CardContent } from "@/components/ui/card";
+import { Container } from "@/components/ui/container";
+import { Reveal } from "@/components/ui/motion";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { aboutContent, siteConfig } from "@/data/site";
 
 export default function About() {
   return (
-    <section id="about" className="py-24">
-      <Container>
+    <section id="about" className="border-b border-foreground py-24 lg:py-32">
+      <Container size="xl">
         <SectionHeading
-          title="About Me"
-          subtitle="Introduction"
-          description="Get to know me better - my background, passions, and what drives me as a developer."
+          align="left"
+          subtitle="[Part 01 / 05] About"
+          title={aboutContent.title}
+          description={aboutContent.summary}
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="space-y-6"
-          >
-            <p className="text-lg text-muted-foreground">
-              I'm an Information Science student at Jimma University with a deep passion for
-              software engineering and building innovative solutions. My journey in tech began
-              with curiosity and has evolved into a dedicated pursuit of excellence.
-            </p>
-            <p className="text-lg text-muted-foreground">
-              I specialize in full-stack web development, with expertise in modern JavaScript
-              frameworks, TypeScript, and cloud technologies. I believe in writing clean,
-              maintainable code and creating exceptional user experiences.
-            </p>
-            <p className="text-lg text-muted-foreground">
-              When I'm not coding, you'll find me exploring new technologies, contributing to
-              open-source projects, or participating in coding competitions. I'm constantly
-              learning and growing, always looking for new challenges to tackle.
-            </p>
-          </motion.div>
+        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+          <Reveal className="relative">
+            <div className="absolute -bottom-3 -right-3 h-full w-full rounded-lg border border-foreground bg-accent" aria-hidden="true" />
+            <div className="relative aspect-[4/5] overflow-hidden rounded-lg border border-foreground bg-card shadow-[8px_8px_0_hsl(var(--foreground))]">
+              <Image
+                src="/image/gud_image.jpg"
+                alt={`${siteConfig.fullName} portrait`}
+                fill
+                priority
+                sizes="(min-width: 1024px) 480px, 100vw"
+                className="object-cover"
+              />
+            </div>
+          </Reveal>
 
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="space-y-6"
-          >
-            <Card>
-              <CardContent className="pt-6 space-y-4">
-                <h3 className="text-xl font-semibold">My Journey</h3>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 mt-2 rounded-full bg-primary" />
-                    <p className="text-muted-foreground">
-                      Started programming in 2021, fell in love with web development
-                    </p>
+          <div className="space-y-6">
+            <Reveal>
+              <Card className="bg-primary text-primary-foreground">
+                <CardContent className="space-y-5 p-6">
+                  <div className="flex items-center gap-3">
+                    <GraduationCap className="h-5 w-5" />
+                    <h3 className="text-xl font-black">Current Focus</h3>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 mt-2 rounded-full bg-primary" />
-                    <p className="text-muted-foreground">
-                      Enrolled at Jimma University for Information Science in 2022
+                  {aboutContent.paragraphs.map((paragraph) => (
+                    <p key={paragraph} className="leading-8 text-primary-foreground/80">
+                      {paragraph}
                     </p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 mt-2 rounded-full bg-primary" />
-                    <p className="text-muted-foreground">
-                      Built multiple full-stack projects and contributed to open source
-                    </p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 mt-2 rounded-full bg-primary" />
-                    <p className="text-muted-foreground">
-                      Currently focused on mastering modern web technologies and best practices
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+                  ))}
+                </CardContent>
+              </Card>
+            </Reveal>
 
-            <Card>
-              <CardContent className="pt-6 space-y-4">
-                <h3 className="text-xl font-semibold">Career Goals</h3>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 mt-2 rounded-full bg-accent" />
-                    <p className="text-muted-foreground">
-                      Work at a leading tech company building impactful products
-                    </p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 mt-2 rounded-full bg-accent" />
-                    <p className="text-muted-foreground">
-                      Contribute to open-source projects that help developers worldwide
-                    </p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 mt-2 rounded-full bg-accent" />
-                    <p className="text-muted-foreground">
-                      Mentor aspiring developers and share knowledge with the community
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Reveal delay={0.08}>
+                <Card className="h-full">
+                  <CardContent className="p-6">
+                    <Target className="mb-4 h-5 w-5 text-accent" />
+                    <h3 className="mb-4 font-black">Principles</h3>
+                    <ul className="space-y-3">
+                      {aboutContent.principles.map((item) => (
+                        <li key={item} className="flex gap-3 text-sm leading-6 text-muted-foreground">
+                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              </Reveal>
+
+              <Reveal delay={0.16}>
+                <Card className="h-full">
+                  <CardContent className="p-6">
+                    <Target className="mb-4 h-5 w-5 text-primary" />
+                    <h3 className="mb-4 font-black">Career Goals</h3>
+                    <ul className="space-y-3">
+                      {aboutContent.goals.map((item) => (
+                        <li key={item} className="flex gap-3 text-sm leading-6 text-muted-foreground">
+                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              </Reveal>
+            </div>
+          </div>
         </div>
       </Container>
     </section>

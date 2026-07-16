@@ -1,73 +1,87 @@
-import { motion } from "framer-motion";
+import { BookOpen, CalendarDays, GraduationCap, MapPin } from "lucide-react";
 
-import { Container } from "@/components/ui/container";
-import { SectionHeading } from "@/components/ui/section-heading";
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import { Container } from "@/components/ui/container";
+import { Reveal } from "@/components/ui/motion";
+import { SectionHeading } from "@/components/ui/section-heading";
 import { education } from "@/data/education";
 
+function formatDate(date: string) {
+  return new Intl.DateTimeFormat("en", {
+    year: "numeric",
+    month: "long",
+    timeZone: "UTC",
+  }).format(new Date(`${date}-01T00:00:00.000Z`));
+}
+
 export default function Education() {
-  const formatDate = (date: string) => {
-    return new Date(date).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-    });
-  };
-
   return (
-    <section id="education" className="py-24 bg-muted/30">
-      <Container>
-        <SectionHeading
-          title="Education"
-          subtitle="Academic"
-          description="My educational background and relevant coursework."
-        />
+    <section id="education" className="border-b border-foreground py-24 lg:py-32">
+      <Container size="xl">
+        <Reveal>
+          <SectionHeading
+            align="left"
+            title="Academic foundation with a software engineering direction."
+            subtitle="[Part 05 / 05] Education"
+            description="Information Science at Jimma University gives the broader systems context; personal engineering work turns that foundation into practical software."
+          />
+        </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {education.map((edu, index) => (
-            <motion.div
-              key={edu.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-            >
-              <Card className="h-full hover:shadow-lg transition-shadow">
-                <CardContent className="pt-6">
-                  <div className="mb-4">
-                    <h3 className="text-xl font-semibold">{edu.degree}</h3>
-                    <p className="text-lg text-primary">{edu.field}</p>
-                    <p className="text-muted-foreground">{edu.institution}</p>
-                    <p className="text-sm text-muted-foreground">{edu.location}</p>
+        <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+          {education.map((edu) => (
+            <Reveal key={edu.id}>
+              <Card className="h-full">
+                <CardContent className="p-6">
+                  <div className="mb-5 grid h-14 w-14 place-items-center rounded-md border border-foreground bg-primary text-primary-foreground">
+                    <GraduationCap className="h-7 w-7" />
                   </div>
-
-                  <div className="flex items-center gap-2 mb-4">
-                    <Badge variant="secondary">
-                      {formatDate(edu.startDate)} - {edu.current ? "Present" : formatDate(edu.endDate)}
-                    </Badge>
-                    {edu.gpa && (
-                      <Badge variant="outline">GPA: {edu.gpa}</Badge>
-                    )}
+                  <h3 className="text-2xl font-black">{edu.degree}</h3>
+                  <p className="mt-1 text-xl font-black text-primary">{edu.field}</p>
+                  <div className="mt-5 space-y-3 text-sm text-muted-foreground">
+                    <p className="flex items-center gap-2">
+                      <BookOpen className="h-4 w-4 text-accent" />
+                      {edu.institution}
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <MapPin className="h-4 w-4 text-accent" />
+                      {edu.location}
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <CalendarDays className="h-4 w-4 text-accent" />
+                      {formatDate(edu.startDate)} - {edu.current ? `Expected ${formatDate(edu.endDate)}` : formatDate(edu.endDate)}
+                    </p>
                   </div>
-
-                  {edu.description && (
-                    <p className="text-muted-foreground mb-4">{edu.description}</p>
-                  )}
-
-                  <div>
-                    <h4 className="font-semibold mb-2">Relevant Coursework</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {edu.coursework.map((course) => (
-                        <Badge key={course} variant="outline" className="text-xs">
-                          {course}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
+                  {edu.description ? (
+                    <p className="mt-6 leading-7 text-muted-foreground">{edu.description}</p>
+                  ) : null}
                 </CardContent>
               </Card>
-            </motion.div>
+            </Reveal>
           ))}
+
+          <Reveal delay={0.08}>
+            <Card className="h-full">
+              <CardContent className="p-6">
+                <h3 className="mb-4 text-xl font-black">Relevant Coursework</h3>
+                <div className="mb-8 flex flex-wrap gap-2">
+                  {education[0]?.coursework.map((course) => (
+                    <Badge key={course} variant="outline">{course}</Badge>
+                  ))}
+                </div>
+
+                <h3 className="mb-4 text-xl font-black">Highlights</h3>
+                <ul className="space-y-3">
+                  {education[0]?.highlights.map((highlight) => (
+                    <li key={highlight} className="flex gap-3 text-sm leading-6 text-muted-foreground">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          </Reveal>
         </div>
       </Container>
     </section>
