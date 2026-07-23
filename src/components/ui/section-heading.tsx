@@ -15,10 +15,10 @@ const SectionHeading = React.forwardRef<HTMLHeadingElement, SectionHeadingProps>
       <div
         ref={ref}
         className={cn(
-          "mb-12",
+          "mb-12 max-w-3xl",
           {
             "text-left": align === "left",
-            "text-center": align === "center",
+            "mx-auto text-center": align === "center",
             "text-right": align === "right",
           },
           className
@@ -26,15 +26,15 @@ const SectionHeading = React.forwardRef<HTMLHeadingElement, SectionHeadingProps>
         {...props}
       >
         {subtitle && (
-          <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-2">
+          <p className="mb-4 font-mono text-sm font-bold uppercase text-primary">
             {subtitle}
           </p>
         )}
-        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+        <h2 className="text-balance text-4xl font-black leading-[0.95] sm:text-5xl md:text-6xl">
           {title}
         </h2>
         {description && (
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className={cn("mt-5 text-base leading-8 text-muted-foreground sm:text-lg", align === "center" && "mx-auto max-w-2xl")}>
             {description}
           </p>
         )}

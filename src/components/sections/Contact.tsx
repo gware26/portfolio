@@ -1,97 +1,96 @@
 "use client";
 
 import * as React from "react";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Send } from "lucide-react";
+import { CheckCircle2, Mail, MapPin, Send } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-import { Container } from "@/components/ui/container";
-import { SectionHeading } from "@/components/ui/section-heading";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Container } from "@/components/ui/container";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { Textarea } from "@/components/ui/textarea";
+import { contactContent, siteConfig } from "@/data/site";
 
 const contactSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email address"),
-  subject: z.string().min(5, "Subject must be at least 5 characters"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
+  name: z.string().min(2, "Enter at least 2 characters."),
+  email: z.email("Enter a valid email address."),
+  subject: z.string().min(5, "Enter at least 5 characters."),
+  message: z.string().min(20, "Enter at least 20 characters."),
 });
 
 type ContactFormValues = z.infer<typeof contactSchema>;
 
 export default function Contact() {
-  const [isSubmitting, setIsSubmitting] = React.useState(false);
-  const [isSubmitted, setIsSubmitted] = React.useState(false);
-
+  const [submitted, setSubmitted] = React.useState(false);
   const {
     register,
     handleSubmit,
-    formState: { errors },
     reset,
+    formState: { errors, isSubmitting },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    },
   });
 
-  const onSubmit = async (data: ContactFormValues) => {
-    setIsSubmitting(true);
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log("Form submitted:", data);
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+  async function onSubmit(values: ContactFormValues) {
+    await new Promise((resolve) => setTimeout(resolve, 800));
+    const mailto = new URL(`mailto:${siteConfig.email}`);
+    mailto.searchParams.set("subject", values.subject);
+    mailto.searchParams.set("body", `${values.message}\n\nFrom: ${values.name} <${values.email}>`);
+    window.location.assign(mailto.toString());
+    setSubmitted(true);
     reset();
-
-    setTimeout(() => setIsSubmitted(false), 5000);
-  };
+  }
 
   return (
-    <section id="contact" className="py-24 bg-muted/30">
-      <Container>
-        <SectionHeading
-          title="Get in Touch"
-          subtitle="Contact"
-          description="Have a project in mind? Let's work together to build something amazing."
-        />
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <section id="contact" className="py-24">
+      <Container size="xl">
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="space-y-6"
           >
-            <div>
-              <h3 className="text-2xl font-semibold mb-4">Let's Connect</h3>
-              <p className="text-muted-foreground">
-                I'm always open to discussing new projects, creative ideas, or opportunities
-                to be part of your vision. Feel free to reach out through the form or contact
-                me directly.
-              </p>
-            </div>
+            <SectionHeading
+              align="left"
+              title={contactContent.title}
+              subtitle="Contact"
+              description={contactContent.description}
+            />
 
-            <div className="space-y-4">
+            <div className="grid gap-4">
               <Card>
-                <CardContent className="pt-6 flex items-center gap-4">
-                  <Mail className="h-6 w-6 text-primary" />
+                <CardContent className="flex items-center gap-4 p-5">
+                  <div className="grid h-11 w-11 place-items-center rounded-md bg-primary/10 text-primary">
+                    <Mail className="h-5 w-5" />
+                  </div>
                   <div>
-                    <p className="font-medium">Email</p>
-                    <p className="text-muted-foreground">your.email@example.com</p>
+                    <p className="font-semibold">Email</p>
+                    <a className="text-sm text-muted-foreground hover:text-foreground" href={`mailto:${siteConfig.email}`}>
+                      {siteConfig.email}
+                    </a>
                   </div>
                 </CardContent>
               </Card>
 
               <Card>
-                <CardContent className="pt-6 flex items-center gap-4">
-                  <MapPin className="h-6 w-6 text-primary" />
+                <CardContent className="flex items-center gap-4 p-5">
+                  <div className="grid h-11 w-11 place-items-center rounded-md bg-accent/10 text-accent">
+                    <MapPin className="h-5 w-5" />
+                  </div>
                   <div>
-                    <p className="font-medium">Location</p>
-                    <p className="text-muted-foreground">Jimma, Ethiopia</p>
+                    <p className="font-semibold">Location</p>
+                    <p className="text-sm text-muted-foreground">{siteConfig.location}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -99,86 +98,54 @@ export default function Contact() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ delay: 0.08 }}
           >
             <Card>
-              <CardContent className="pt-6">
-                {isSubmitted ? (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="text-center py-12"
-                  >
-                    <div className="text-4xl mb-4">✓</div>
-                    <h3 className="text-xl font-semibold mb-2">Message Sent!</h3>
-                    <p className="text-muted-foreground">
-                      Thank you for reaching out. I'll get back to you soon.
-                    </p>
-                  </motion.div>
-                ) : (
-                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Name</Label>
-                      <Input
-                        id="name"
-                        placeholder="Your name"
-                        {...register("name")}
-                      />
-                      {errors.name && (
-                        <p className="text-sm text-destructive">{errors.name.message}</p>
-                      )}
+              <CardContent className="p-6">
+                {submitted ? (
+                  <div className="grid min-h-[420px] place-items-center text-center">
+                    <div>
+                      <CheckCircle2 className="mx-auto mb-4 h-12 w-12 text-primary" />
+                      <h3 className="text-2xl font-bold">Message prepared</h3>
+                      <p className="mt-3 max-w-md text-muted-foreground">
+                        Your email client should open with the message ready to send. {contactContent.responseTime}.
+                      </p>
                     </div>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                    <div className="grid gap-5 sm:grid-cols-2">
+                      <div className="space-y-2">
+                        <Label htmlFor="name">Name</Label>
+                        <Input id="name" autoComplete="name" placeholder="Your name" {...register("name")} />
+                        {errors.name ? <p className="text-sm text-destructive">{errors.name.message}</p> : null}
+                      </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        placeholder="your.email@example.com"
-                        {...register("email")}
-                      />
-                      {errors.email && (
-                        <p className="text-sm text-destructive">{errors.email.message}</p>
-                      )}
+                      <div className="space-y-2">
+                        <Label htmlFor="email">Email</Label>
+                        <Input id="email" type="email" autoComplete="email" placeholder="you@example.com" {...register("email")} />
+                        {errors.email ? <p className="text-sm text-destructive">{errors.email.message}</p> : null}
+                      </div>
                     </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="subject">Subject</Label>
-                      <Input
-                        id="subject"
-                        placeholder="Project inquiry"
-                        {...register("subject")}
-                      />
-                      {errors.subject && (
-                        <p className="text-sm text-destructive">{errors.subject.message}</p>
-                      )}
+                      <Input id="subject" placeholder="Internship, freelance project, or collaboration" {...register("subject")} />
+                      {errors.subject ? <p className="text-sm text-destructive">{errors.subject.message}</p> : null}
                     </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="message">Message</Label>
-                      <Textarea
-                        id="message"
-                        placeholder="Tell me about your project..."
-                        className="min-h-[120px]"
-                        {...register("message")}
-                      />
-                      {errors.message && (
-                        <p className="text-sm text-destructive">{errors.message.message}</p>
-                      )}
+                      <Textarea id="message" placeholder="Share the context, goal, timeline, and useful links." {...register("message")} />
+                      {errors.message ? <p className="text-sm text-destructive">{errors.message.message}</p> : null}
                     </div>
 
-                    <Button type="submit" className="w-full" disabled={isSubmitting}>
-                      {isSubmitting ? (
-                        "Sending..."
-                      ) : (
-                        <>
-                          Send Message
-                          <Send className="ml-2 h-4 w-4" />
-                        </>
-                      )}
+                    <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                      {isSubmitting ? "Preparing..." : "Send message"}
+                      <Send className="h-4 w-4" />
                     </Button>
                   </form>
                 )}

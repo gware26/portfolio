@@ -1,35 +1,36 @@
+"use client";
+
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Home, ArrowLeft } from "lucide-react";
+import { ArrowLeft, Home } from "lucide-react";
 
-import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
+import { Container } from "@/components/ui/container";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <Container>
+    <div className="flex min-h-screen items-center justify-center pt-16">
+      <Container size="md">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center space-y-8"
+          className="text-center"
         >
-          <h1 className="text-9xl font-bold text-primary">404</h1>
-          <h2 className="text-4xl font-semibold">Page Not Found</h2>
-          <p className="text-xl text-muted-foreground max-w-md mx-auto">
-            Sorry, the page you're looking for doesn't exist or has been moved.
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">404</p>
+          <h1 className="mt-4 text-5xl font-bold tracking-tight sm:text-7xl">Page not found</h1>
+          <p className="mx-auto mt-5 max-w-md leading-7 text-muted-foreground">
+            The page you are looking for does not exist or has moved.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Button size="lg" asChild>
               <Link href="/">
-                <Home className="mr-2 h-4 w-4" />
-                Back to Home
+                <Home className="h-4 w-4" />
+                Home
               </Link>
             </Button>
             <Button size="lg" variant="outline" onClick={() => window.history.back()}>
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Go Back
+              <ArrowLeft className="h-4 w-4" />
+              Back
             </Button>
           </div>
         </motion.div>

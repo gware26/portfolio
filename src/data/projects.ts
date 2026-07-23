@@ -1,67 +1,79 @@
 export interface Project {
   id: string;
   title: string;
+  kicker: string;
   description: string;
   image: string;
   techStack: string[];
   github: string;
   liveDemo?: string;
   featured?: boolean;
+  year: string;
+  impact: string;
 }
 
 export const projects: Project[] = [
   {
-    id: "1",
-    title: "Portfolio Website",
-    description: "A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS. Features smooth animations, dark mode support, and optimized performance.",
-    image: "/images/projects/portfolio.jpg",
+    id: "expert-advice",
+    title: "Expert Advice Platform",
+    kicker: "Knowledge sharing",
+    description:
+      "A guided advice experience that helps students discover practical recommendations, compare options, and move from uncertainty to action.",
+    image: "/docs/expert_advices.png",
     techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     github: "https://github.com/yourusername/portfolio",
     liveDemo: "https://yourportfolio.com",
     featured: true,
+    year: "2026",
+    impact: "Designed for quick scanning, clear calls to action, and approachable expert content.",
   },
   {
-    id: "2",
-    title: "Task Management App",
-    description: "A full-stack task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
-    image: "/images/projects/task-manager.jpg",
-    techStack: ["React", "Node.js", "MongoDB", "Socket.io"],
+    id: "pathfinder",
+    title: "Pathfinder",
+    kicker: "Student planning",
+    description:
+      "A career and study planning interface for mapping goals, recommended paths, resources, and progress checkpoints.",
+    image: "/docs/pathfinder.png",
+    techStack: ["React", "TypeScript", "Node.js", "Database Design"],
     github: "https://github.com/yourusername/task-manager",
     liveDemo: "https://taskmanager.demo.com",
+    featured: true,
+    year: "2025",
+    impact: "Turns broad learning goals into structured, navigable steps.",
   },
   {
-    id: "3",
-    title: "E-commerce Platform",
-    description: "A scalable e-commerce platform with payment integration, inventory management, and admin dashboard.",
-    image: "/images/projects/ecommerce.jpg",
-    techStack: ["Next.js", "Stripe", "PostgreSQL", "Prisma"],
+    id: "digital-voting",
+    title: "Digital Voting System",
+    kicker: "Secure workflows",
+    description:
+      "A voting workflow prototype focused on eligibility, clear ballot states, result visibility, and a dependable administrative experience.",
+    image: "/docs/voting.png",
+    techStack: ["Next.js", "PostgreSQL", "Prisma", "Zod"],
     github: "https://github.com/yourusername/ecommerce",
+    featured: true,
+    year: "2025",
+    impact: "Explores trustworthy civic interfaces with strong validation and transparent states.",
   },
   {
-    id: "4",
-    title: "Weather Dashboard",
-    description: "A beautiful weather dashboard with location-based forecasts, interactive maps, and historical data visualization.",
-    image: "/images/projects/weather.jpg",
-    techStack: ["React", "OpenWeather API", "Chart.js", "Mapbox"],
+    id: "portfolio-system",
+    title: "Portfolio Design System",
+    kicker: "Personal brand",
+    description:
+      "A handcrafted portfolio system with theme persistence, reusable cards, responsive layouts, motion primitives, and typed content.",
+    image: "/image/gud_image.jpg",
+    techStack: ["Next.js", "React", "Tailwind CSS", "shadcn/ui"],
     github: "https://github.com/yourusername/weather-dashboard",
     liveDemo: "https://weather.demo.com",
-  },
-  {
-    id: "5",
-    title: "AI Chat Interface",
-    description: "A modern chat interface for AI interactions with streaming responses, conversation history, and custom prompts.",
-    image: "/images/projects/ai-chat.jpg",
-    techStack: ["Next.js", "OpenAI API", "Tailwind CSS", "Vercel AI SDK"],
-    github: "https://github.com/yourusername/ai-chat",
-    liveDemo: "https://ai-chat.demo.com",
-  },
-  {
-    id: "6",
-    title: "Blog Platform",
-    description: "A static blog platform with MDX support, syntax highlighting, and optimized SEO.",
-    image: "/images/projects/blog.jpg",
-    techStack: ["Next.js", "MDX", "Contentlayer", "Vercel"],
-    github: "https://github.com/yourusername/blog",
-    liveDemo: "https://blog.demo.com",
+    year: "2026",
+    impact: "A production-minded personal site built to be extended as experience grows.",
   },
 ];
+
+export const projectFilters = [
+  "All",
+  "Next.js",
+  "React",
+  "TypeScript",
+  "Tailwind CSS",
+  "PostgreSQL",
+] as const;
