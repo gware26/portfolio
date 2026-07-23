@@ -53,7 +53,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-24">
+    <section id="contact" className="py-24 lg:py-32">
       <Container size="xl">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <motion.div
@@ -64,19 +64,19 @@ export default function Contact() {
             <SectionHeading
               align="left"
               title={contactContent.title}
-              subtitle="Contact"
+              subtitle="[Open channel] Contact"
               description={contactContent.description}
             />
 
             <div className="grid gap-4">
               <Card>
                 <CardContent className="flex items-center gap-4 p-5">
-                  <div className="grid h-11 w-11 place-items-center rounded-md bg-primary/10 text-primary">
+                  <div className="grid h-11 w-11 place-items-center rounded-md border border-foreground bg-primary text-primary-foreground">
                     <Mail className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="font-semibold">Email</p>
-                    <a className="text-sm text-muted-foreground hover:text-foreground" href={`mailto:${siteConfig.email}`}>
+                    <p className="font-black">Email</p>
+                    <a className="text-sm font-semibold text-muted-foreground hover:text-foreground" href={`mailto:${siteConfig.email}`}>
                       {siteConfig.email}
                     </a>
                   </div>
@@ -85,11 +85,11 @@ export default function Contact() {
 
               <Card>
                 <CardContent className="flex items-center gap-4 p-5">
-                  <div className="grid h-11 w-11 place-items-center rounded-md bg-accent/10 text-accent">
+                  <div className="grid h-11 w-11 place-items-center rounded-md border border-foreground bg-accent text-accent-foreground">
                     <MapPin className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="font-semibold">Location</p>
+                    <p className="font-black">Location</p>
                     <p className="text-sm text-muted-foreground">{siteConfig.location}</p>
                   </div>
                 </CardContent>
@@ -109,7 +109,7 @@ export default function Contact() {
                   <div className="grid min-h-[420px] place-items-center text-center">
                     <div>
                       <CheckCircle2 className="mx-auto mb-4 h-12 w-12 text-primary" />
-                      <h3 className="text-2xl font-bold">Message prepared</h3>
+                      <h3 className="text-2xl font-black">Message prepared</h3>
                       <p className="mt-3 max-w-md text-muted-foreground">
                         Your email client should open with the message ready to send. {contactContent.responseTime}.
                       </p>

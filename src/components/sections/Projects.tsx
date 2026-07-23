@@ -6,13 +6,13 @@ import { ProjectGallery } from "./project-gallery";
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24">
+    <section id="projects" className="border-b border-foreground py-24 lg:py-32">
       <Container size="xl">
         <Reveal>
           <SectionHeading
             align="left"
             title="Selected projects with product thinking behind the pixels."
-            subtitle="Projects"
+            subtitle="[Part 03 / 05] Projects"
             description="A focused set of work that shows interface craft, data-aware thinking, validation, responsive design, and a practical full-stack learning path."
           />
         </Reveal>

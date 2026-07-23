@@ -28,8 +28,8 @@ export function ProjectGallery({ projects }: { projects: Project[] }) {
             type="button"
             onClick={() => setActiveFilter(filter)}
             className={cn(
-              "rounded-full border border-border/70 px-4 py-2 text-sm font-semibold text-muted-foreground transition-all hover:border-primary/50 hover:text-foreground",
-              activeFilter === filter && "border-primary/40 bg-primary/12 text-primary"
+              "rounded-md border border-foreground bg-card px-4 py-2 text-sm font-bold text-foreground transition-all hover:bg-secondary",
+              activeFilter === filter && "bg-primary text-primary-foreground shadow-[3px_3px_0_hsl(var(--foreground))]"
             )}
           >
             {filter}
@@ -47,7 +47,7 @@ export function ProjectGallery({ projects }: { projects: Project[] }) {
             exit={{ opacity: 0, y: 18 }}
           >
             <Card className="group h-full overflow-hidden">
-              <div className="relative aspect-[16/9] overflow-hidden border-b border-border/70 bg-secondary">
+              <div className="relative aspect-[16/9] overflow-hidden border-b border-foreground bg-secondary">
                 <Image
                   src={project.image}
                   alt={`${project.title} project screenshot`}
@@ -56,7 +56,7 @@ export function ProjectGallery({ projects }: { projects: Project[] }) {
                   className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 />
                 {project.featured ? (
-                  <Badge className="absolute left-4 top-4 bg-background/80 text-foreground backdrop-blur">
+                  <Badge className="absolute left-4 top-4">
                     Featured
                   </Badge>
                 ) : null}
@@ -65,14 +65,14 @@ export function ProjectGallery({ projects }: { projects: Project[] }) {
               <CardContent className="flex h-full flex-col gap-5 p-6">
                 <div>
                   <div className="mb-3 flex items-center justify-between gap-4 text-sm text-muted-foreground">
-                    <span>{project.kicker}</span>
-                    <span>{project.year}</span>
+                    <span className="font-mono font-bold uppercase">{project.kicker}</span>
+                    <span className="font-mono font-bold">{project.year}</span>
                   </div>
-                  <h3 className="text-2xl font-bold tracking-tight">{project.title}</h3>
+                  <h3 className="text-2xl font-black">{project.title}</h3>
                   <p className="mt-3 leading-7 text-muted-foreground">{project.description}</p>
                 </div>
 
-                <p className="rounded-md border border-border/70 bg-secondary/50 p-3 text-sm leading-6 text-muted-foreground">
+                <p className="rounded-md border border-foreground bg-primary/20 p-3 text-sm font-semibold leading-6 text-foreground">
                   {project.impact}
                 </p>
 

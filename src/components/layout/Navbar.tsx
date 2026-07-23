@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
+import { LogoMark } from "@/components/layout/logo-mark";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/data/site";
@@ -24,17 +25,18 @@ export default function Navbar() {
     <motion.header
       initial={{ y: -24, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/72 backdrop-blur-2xl"
+      className="fixed inset-x-0 top-0 z-50 border-b border-foreground bg-background/95 backdrop-blur"
     >
-      <nav className="mx-auto flex h-16 max-w-[1280px] items-center justify-between px-4 sm:px-6 lg:px-8" aria-label="Primary">
+      <nav className="mx-auto flex h-20 max-w-[1280px] items-center justify-between px-4 sm:px-6 lg:px-8" aria-label="Primary">
         <Link href="/" className="group flex items-center gap-3" aria-label="Home">
-          <span className="grid h-9 w-9 place-items-center rounded-md border border-border/80 bg-card text-sm font-bold text-gradient transition-transform group-hover:-translate-y-0.5">
-            {siteConfig.initials}
+          <LogoMark label={siteConfig.initials} size="sm" className="transition-transform group-hover:-translate-y-0.5" />
+          <span className="grid leading-none">
+            <span className="font-black uppercase">{siteConfig.fullName}</span>
+            <span className="hidden font-mono text-xs text-muted-foreground sm:inline">Portfolio / 2026</span>
           </span>
-          <span className="hidden text-sm font-semibold text-foreground sm:inline">{siteConfig.fullName}</span>
         </Link>
 
-        <div className="hidden items-center gap-1 rounded-full border border-border/70 bg-card/60 p-1 md:flex">
+        <div className="hidden items-center gap-6 md:flex">
           {navigation.map((item) => {
             const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
 
@@ -43,8 +45,9 @@ export default function Navbar() {
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  "rounded-full px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground",
-                  active && "bg-secondary text-foreground"
+                  "relative py-2 text-sm font-bold uppercase text-muted-foreground transition-colors hover:text-foreground",
+                  active &&
+                    "text-foreground after:absolute after:inset-x-0 after:-bottom-1 after:h-1 after:rounded-full after:bg-primary"
                 )}
               >
                 {item.name}
@@ -54,6 +57,9 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-2">
+          <Button variant="outline" size="sm" className="hidden sm:inline-flex" asChild>
+            <Link href="/contact">Let&apos;s talk</Link>
+          </Button>
           <ThemeToggle />
           <Button
             variant="ghost"
@@ -76,14 +82,14 @@ export default function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="overflow-hidden border-t border-border/60 bg-background/95 md:hidden"
+            className="overflow-hidden border-t border-foreground bg-background md:hidden"
           >
             <div className="mx-auto grid max-w-[1280px] gap-2 px-4 py-4 sm:px-6">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="rounded-md px-3 py-3 text-sm font-semibold text-muted-foreground hover:bg-secondary hover:text-foreground"
+                  className="rounded-md border border-foreground bg-card px-3 py-3 text-sm font-bold uppercase text-foreground hover:bg-secondary"
                 >
                   {item.name}
                 </Link>

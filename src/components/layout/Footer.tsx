@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowUp, Github, Linkedin, Mail } from "lucide-react";
 
+import { LogoMark } from "@/components/layout/logo-mark";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Separator } from "@/components/ui/separator";
@@ -19,25 +20,38 @@ function SocialIcon({ icon }: { icon: SocialLink["icon"] }) {
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border/70 bg-background/70">
-      <Container size="xl" className="py-12">
+    <footer className="border-t border-foreground bg-background">
+      <Container size="xl" className="py-14">
+        <div className="mb-12 grid gap-6 rounded-lg border border-foreground bg-primary p-6 shadow-[6px_6px_0_hsl(var(--foreground))] lg:grid-cols-[1fr_auto] lg:items-center">
+          <div>
+            <p className="font-mono text-sm font-bold uppercase text-primary-foreground">[Next step]</p>
+            <h2 className="mt-3 max-w-3xl text-4xl font-black leading-none text-primary-foreground sm:text-5xl">
+              Have a useful web product to build?
+            </h2>
+          </div>
+          <Button variant="outline" size="lg" asChild>
+            <a href={`mailto:${siteConfig.email}`}>
+              <Mail className="h-4 w-4" />
+              Email Gudina
+            </a>
+          </Button>
+        </div>
+
         <div className="grid gap-10 md:grid-cols-[1.3fr_0.7fr_0.7fr_0.5fr]">
           <div className="max-w-md space-y-4">
             <Link href="/" className="inline-flex items-center gap-3">
-              <span className="grid h-10 w-10 place-items-center rounded-md border border-border/80 bg-card text-sm font-bold text-gradient">
-                {siteConfig.initials}
-              </span>
-              <span className="font-semibold">{siteConfig.fullName}</span>
+              <LogoMark label={siteConfig.initials} />
+              <span className="font-black uppercase">{siteConfig.fullName}</span>
             </Link>
             <p className="text-sm leading-7 text-muted-foreground">{siteConfig.tagline}</p>
           </div>
 
           <div>
-            <h2 className="mb-4 text-sm font-semibold">Navigation</h2>
+            <h2 className="mb-4 font-mono text-sm font-bold uppercase text-primary">Navigation</h2>
             <ul className="space-y-2">
               {navigation.map((item) => (
                 <li key={item.name}>
-                  <Link href={item.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                  <Link href={item.href} className="text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground">
                     {item.name}
                   </Link>
                 </li>
@@ -46,7 +60,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h2 className="mb-4 text-sm font-semibold">Connect</h2>
+            <h2 className="mb-4 font-mono text-sm font-bold uppercase text-primary">Connect</h2>
             <div className="flex gap-2">
               {socialLinks.map((link) => (
                 <Button key={link.name} variant="outline" size="icon" asChild>

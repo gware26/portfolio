@@ -16,8 +16,8 @@ export default function NotFound() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center"
         >
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">404</p>
-          <h1 className="mt-4 text-5xl font-bold tracking-tight sm:text-7xl">Page not found</h1>
+          <p className="font-mono text-sm font-bold uppercase text-primary">[404]</p>
+          <h1 className="mt-4 text-5xl font-black leading-none sm:text-7xl">Page not found</h1>
           <p className="mx-auto mt-5 max-w-md leading-7 text-muted-foreground">
             The page you are looking for does not exist or has moved.
           </p>

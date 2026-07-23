@@ -17,13 +17,13 @@ function formatDate(date: string) {
 
 export default function Education() {
   return (
-    <section id="education" className="border-y border-border/60 bg-secondary/25 py-24">
+    <section id="education" className="border-b border-foreground py-24 lg:py-32">
       <Container size="xl">
         <Reveal>
           <SectionHeading
             align="left"
             title="Academic foundation with a software engineering direction."
-            subtitle="Education"
+            subtitle="[Part 05 / 05] Education"
             description="Information Science at Jimma University gives the broader systems context; personal engineering work turns that foundation into practical software."
           />
         </Reveal>
@@ -33,9 +33,11 @@ export default function Education() {
             <Reveal key={edu.id}>
               <Card className="h-full">
                 <CardContent className="p-6">
-                  <GraduationCap className="mb-5 h-8 w-8 text-primary" />
-                  <h3 className="text-2xl font-bold">{edu.degree}</h3>
-                  <p className="mt-1 text-xl text-primary">{edu.field}</p>
+                  <div className="mb-5 grid h-14 w-14 place-items-center rounded-md border border-foreground bg-primary text-primary-foreground">
+                    <GraduationCap className="h-7 w-7" />
+                  </div>
+                  <h3 className="text-2xl font-black">{edu.degree}</h3>
+                  <p className="mt-1 text-xl font-black text-primary">{edu.field}</p>
                   <div className="mt-5 space-y-3 text-sm text-muted-foreground">
                     <p className="flex items-center gap-2">
                       <BookOpen className="h-4 w-4 text-accent" />
@@ -61,14 +63,14 @@ export default function Education() {
           <Reveal delay={0.08}>
             <Card className="h-full">
               <CardContent className="p-6">
-                <h3 className="mb-4 text-xl font-semibold">Relevant Coursework</h3>
+                <h3 className="mb-4 text-xl font-black">Relevant Coursework</h3>
                 <div className="mb-8 flex flex-wrap gap-2">
                   {education[0]?.coursework.map((course) => (
                     <Badge key={course} variant="outline">{course}</Badge>
                   ))}
                 </div>
 
-                <h3 className="mb-4 text-xl font-semibold">Highlights</h3>
+                <h3 className="mb-4 text-xl font-black">Highlights</h3>
                 <ul className="space-y-3">
                   {education[0]?.highlights.map((highlight) => (
                     <li key={highlight} className="flex gap-3 text-sm leading-6 text-muted-foreground">
