@@ -7,6 +7,7 @@ import Navbar from "@/components/layout/Navbar";
 import { ThemeProvider } from "@/components/layout/theme-toggle";
 import { MotionProvider } from "@/components/ui/motion";
 import { siteConfig } from "@/data/site";
+import { socialLinks } from "@/data/social";
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -82,6 +83,7 @@ export default function RootLayout({
       "@type": "CollegeOrUniversity",
       name: siteConfig.university,
     },
+    sameAs: socialLinks.filter((link) => link.icon !== "mail").map((link) => link.url),
   };
 
   return (

@@ -15,6 +15,9 @@ import { Label } from "@/components/ui/label";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Textarea } from "@/components/ui/textarea";
 import { contactContent, siteConfig } from "@/data/site";
+import { socialLinks } from "@/data/social";
+
+const telegram = socialLinks.find((link) => link.icon === "telegram");
 
 const contactSchema = z.object({
   name: z.string().min(2, "Enter at least 2 characters."),
@@ -108,6 +111,27 @@ export default function Contact() {
                   </div>
                 </CardContent>
               </Card>
+
+              {telegram ? (
+                <Card>
+                  <CardContent className="flex items-center gap-4 p-5">
+                    <div className="grid h-11 w-11 place-items-center rounded-md border border-foreground bg-accent text-accent-foreground">
+                      <Send className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="font-black">Telegram</p>
+                      <a
+                        className="text-sm font-semibold text-muted-foreground hover:text-foreground"
+                        href={telegram.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {telegram.url.replace("https://", "")}
+                      </a>
+                    </div>
+                  </CardContent>
+                </Card>
+              ) : null}
             </div>
           </motion.div>
 

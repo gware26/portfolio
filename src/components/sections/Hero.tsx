@@ -3,22 +3,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowDown, Download, Github, Linkedin, Mail, Send } from "lucide-react";
+import { ArrowDown, Download, Send } from "lucide-react";
 
 import { LogoMark } from "@/components/layout/logo-mark";
 import { LogoMarquee } from "@/components/sections/logo-marquee";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { SocialIcon } from "@/components/ui/social-icon";
 import { siteConfig } from "@/data/site";
-import { socialLinks, type SocialLink } from "@/data/social";
-
-function SocialIcon({ icon }: { icon: SocialLink["icon"] }) {
-  const className = "h-4 w-4";
-
-  if (icon === "github") return <Github className={className} />;
-  if (icon === "linkedin") return <Linkedin className={className} />;
-  return <Mail className={className} />;
-}
+import { socialLinks } from "@/data/social";
 
 export default function Hero() {
   return (

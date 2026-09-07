@@ -1,22 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUp, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowUp, Mail } from "lucide-react";
 
 import { LogoMark } from "@/components/layout/logo-mark";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Separator } from "@/components/ui/separator";
+import { SocialIcon } from "@/components/ui/social-icon";
 import { siteConfig } from "@/data/site";
-import { navigation, socialLinks, type SocialLink } from "@/data/social";
-
-function SocialIcon({ icon }: { icon: SocialLink["icon"] }) {
-  const className = "h-4 w-4";
-
-  if (icon === "github") return <Github className={className} />;
-  if (icon === "linkedin") return <Linkedin className={className} />;
-  return <Mail className={className} />;
-}
+import { navigation, socialLinks } from "@/data/social";
 
 export default function Footer() {
   return (

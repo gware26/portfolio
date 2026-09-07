@@ -1,7 +1,7 @@
 export interface SocialLink {
   name: string;
   url: string;
-  icon: "github" | "linkedin" | "mail";
+  icon: "github" | "linkedin" | "telegram" | "mail";
   ariaLabel: string;
 }
 
@@ -17,6 +17,12 @@ export const socialLinks: SocialLink[] = [
     url: "https://www.linkedin.com/in/gudina-ware-87a731339",
     icon: "linkedin",
     ariaLabel: "Open LinkedIn profile",
+  },
+  {
+    name: "Telegram",
+    url: "https://t.me/Gudina_portfolio",
+    icon: "telegram",
+    ariaLabel: "Open Telegram channel",
   },
   {
     name: "Email",
