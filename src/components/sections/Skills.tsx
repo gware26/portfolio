@@ -1,6 +1,5 @@
 import { Database, LayoutDashboard, Server, Users, Wrench } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/motion";
@@ -25,8 +24,8 @@ export default function Skills() {
           <SectionHeading
             align="left"
             title="A practical toolkit for building polished web products."
-            subtitle="[Part 02 / 05] Skills"
-            description="The stack is intentionally focused: strong frontend fundamentals, useful backend patterns, database literacy, and collaboration habits that matter on real teams."
+            subtitle="[Part 02 / 06] Skills"
+            description="A full-stack toolkit spanning MERN and PHP/MySQL development, REST APIs, JWT authentication, and the tools that keep real projects shipping."
           />
         </Reveal>
 
@@ -52,19 +51,14 @@ export default function Skills() {
                         key={skill.name}
                         className="rounded-md border border-foreground bg-background p-3 transition-colors group-hover:bg-secondary"
                       >
-                        <div className="flex items-center justify-between gap-3">
-                          <div className="flex min-w-0 items-center gap-3">
-                            <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md border border-foreground bg-card text-[10px] font-black text-foreground">
-                              {skill.icon}
-                            </span>
-                            <div className="min-w-0">
-                              <p className="font-black">{skill.name}</p>
-                              <p className="truncate text-xs text-muted-foreground">{skill.detail}</p>
-                            </div>
+                        <div className="flex min-w-0 items-center gap-3">
+                          <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md border border-foreground bg-card text-[10px] font-black text-foreground">
+                            {skill.icon}
+                          </span>
+                          <div className="min-w-0">
+                            <p className="font-black">{skill.name}</p>
+                            <p className="truncate text-xs text-muted-foreground">{skill.detail}</p>
                           </div>
-                          <Badge variant={skill.level === "Advanced" || skill.level === "Expert" ? "default" : "outline"}>
-                            {skill.level}
-                          </Badge>
                         </div>
                       </div>
                     ))}

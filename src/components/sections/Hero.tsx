@@ -74,9 +74,9 @@ export default function Hero() {
                 </Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
-                <a href={siteConfig.resumeUrl} target="_blank" rel="noopener noreferrer">
+                <a href={siteConfig.resumeUrl} download="Gudina_Ware_CV.pdf" target="_blank" rel="noopener noreferrer">
                   <Download className="h-4 w-4" />
-                  Resume
+                  Download CV
                 </a>
               </Button>
             </motion.div>
@@ -99,21 +99,21 @@ export default function Hero() {
             variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}
             className="relative mx-auto w-full max-w-lg lg:max-w-none"
           >
-            <div className="absolute -right-3 top-3 h-full w-full rounded-lg border border-foreground bg-primary" aria-hidden="true" />
-            <div className="relative overflow-hidden rounded-lg border border-foreground bg-card shadow-[8px_8px_0_hsl(var(--foreground))]">
+            <div className="absolute -right-3 top-3 h-full w-full rounded-2xl border border-foreground bg-primary" aria-hidden="true" />
+            <div className="relative overflow-hidden rounded-2xl border border-foreground bg-card shadow-[8px_8px_0_hsl(var(--foreground)),0_24px_48px_-20px_rgba(0,0,0,0.35)]">
               <div className="relative aspect-[4/5]">
                 <Image
-                  src="/image/gud_image.jpg"
+                  src="/image/gudina-profile.jpg"
                   alt={`${siteConfig.fullName} portrait`}
                   fill
                   priority
                   sizes="(min-width: 1024px) 520px, 100vw"
-                  className="object-cover"
+                  className="object-cover object-top"
                 />
               </div>
               <div className="grid border-t border-foreground bg-card sm:grid-cols-3">
                 {siteConfig.heroMetrics.map((metric) => (
-                  <div key={metric.label} className="border-b border-foreground p-4 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0">
+                  <div key={metric.label} className="border-b border-foreground p-5 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0">
                     <p className="text-2xl font-black">{metric.value}</p>
                     <p className="mt-1 text-xs font-bold uppercase leading-5 text-muted-foreground">{metric.label}</p>
                   </div>

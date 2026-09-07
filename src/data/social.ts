@@ -8,19 +8,19 @@ export interface SocialLink {
 export const socialLinks: SocialLink[] = [
   {
     name: "GitHub",
-    url: "https://github.com/yourusername",
+    url: "https://github.com/gware26",
     icon: "github",
     ariaLabel: "Open GitHub profile",
   },
   {
     name: "LinkedIn",
-    url: "https://linkedin.com/in/yourusername",
+    url: "https://www.linkedin.com/in/gudina-ware-87a731339",
     icon: "linkedin",
     ariaLabel: "Open LinkedIn profile",
   },
   {
     name: "Email",
-    url: "mailto:your.email@example.com",
+    url: "mailto:gudinaware2622@gmail.com",
     icon: "mail",
     ariaLabel: "Send an email",
   },

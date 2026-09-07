@@ -1,12 +1,12 @@
 const logoItems = [
-  "Next.js",
-  "React",
+  "JavaScript",
   "TypeScript",
-  "Tailwind",
+  "React",
   "Node.js",
-  "Postgres",
-  "Prisma",
-  "Figma",
+  "Express.js",
+  "MongoDB",
+  "MySQL",
+  "PHP",
 ];
 
 export function LogoMarquee() {

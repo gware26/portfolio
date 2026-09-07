@@ -20,9 +20,9 @@ export default function Experience() {
         <Reveal>
           <SectionHeading
             align="left"
-            title="Experience built through study, projects, and public practice."
-            subtitle="[Part 04 / 05] Experience"
-            description="Early-career experience does not have to be inflated. This timeline shows the real trajectory: learning deeply, shipping projects, and building professional habits."
+            title="Professional experience building AI-powered, full-stack platforms."
+            subtitle="[Part 04 / 06] Experience"
+            description="Hands-on work engineering secure, role-based systems with modern MERN tooling."
           />
         </Reveal>
 

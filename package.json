@@ -4,20 +4,12 @@
   "private": true,
   "packageManager": "pnpm@10.25.0",
   "scripts": {
-    "dev": "next dev",
+    "dev": "node scripts/dev-open.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "framer-motion": "^12.23.26",
-    "lucide-react": "^0.562.0",
-    "next": "16.0.10",
-    "react": "19.2.1",
-    "react-dom": "19.2.1",
-    "react-icons": "^5.5.0"
-=======
     "@hookform/resolvers": "^5.2.2",
     "@radix-ui/react-label": "^2.1.8",
     "@radix-ui/react-separator": "^1.1.8",
@@ -31,9 +23,9 @@
     "react": "19.2.1",
     "react-dom": "19.2.1",
     "react-hook-form": "^7.68.0",
+    "react-icons": "^5.5.0",
     "tailwind-merge": "^3.4.0",
     "zod": "^4.2.0"
->>>>>>> a7be7250612f9874ac34816f576a3a3972567caf
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",

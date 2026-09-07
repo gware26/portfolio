@@ -1,6 +1,8 @@
-import { BookOpen, CalendarDays, GraduationCap, MapPin } from "lucide-react";
+import Image from "next/image";
+import { BadgeCheck, BookOpen, CalendarDays, ExternalLink, GraduationCap, MapPin } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/motion";
@@ -23,12 +25,12 @@ export default function Education() {
           <SectionHeading
             align="left"
             title="Academic foundation with a software engineering direction."
-            subtitle="[Part 05 / 05] Education"
+            subtitle="[Part 05 / 06] Education"
             description="Information Science at Jimma University gives the broader systems context; personal engineering work turns that foundation into practical software."
           />
         </Reveal>
 
-        <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           {education.map((edu) => (
             <Reveal key={edu.id}>
               <Card className="h-full">
@@ -55,13 +57,51 @@ export default function Education() {
                   {edu.description ? (
                     <p className="mt-6 leading-7 text-muted-foreground">{edu.description}</p>
                   ) : null}
+
+                  {edu.accreditation ? (
+                    <div className="mt-6 overflow-hidden rounded-md border border-foreground bg-secondary">
+                      <a
+                        href={edu.accreditation.fileUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Open ${edu.accreditation.bodyShort} accreditation certificate`}
+                        className="group relative block aspect-[4/3] border-b border-foreground bg-card"
+                      >
+                        <Image
+                          src={edu.accreditation.fileUrl}
+                          alt={`${edu.accreditation.bodyShort} accreditation certificate for the ${edu.degree} in ${edu.field}`}
+                          fill
+                          sizes="(min-width: 1024px) 480px, 100vw"
+                          className="object-contain p-3 transition-transform duration-500 group-hover:scale-[1.02]"
+                        />
+                      </a>
+                      <div className="flex items-start gap-3 p-4">
+                        <BadgeCheck className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                        <div className="min-w-0">
+                          <p className="font-mono text-xs font-bold uppercase text-primary">
+                            Internationally accredited · {edu.accreditation.bodyShort}
+                          </p>
+                          <p className="mt-2 text-sm leading-6 text-muted-foreground">{edu.accreditation.summary}</p>
+                          <p className="mt-2 font-mono text-xs font-bold text-foreground">
+                            Valid {formatDate(edu.accreditation.validFrom.slice(0, 7))} – {formatDate(edu.accreditation.validTo.slice(0, 7))}
+                          </p>
+                          <Button variant="outline" size="sm" asChild className="mt-4">
+                            <a href={edu.accreditation.fileUrl} target="_blank" rel="noopener noreferrer">
+                              <ExternalLink className="h-4 w-4" />
+                              Open full certificate
+                            </a>
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  ) : null}
                 </CardContent>
               </Card>
             </Reveal>
           ))}
 
           <Reveal delay={0.08}>
-            <Card className="h-full">
+            <Card>
               <CardContent className="p-6">
                 <h3 className="mb-4 text-xl font-black">Relevant Coursework</h3>
                 <div className="mb-8 flex flex-wrap gap-2">

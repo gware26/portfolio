@@ -4,7 +4,7 @@ import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: `Selected projects by ${siteConfig.fullName}, built with Next.js, React, TypeScript, and modern web tooling.`,
+  description: `Selected projects by ${siteConfig.fullName}, spanning full-stack MERN development, PHP/MySQL applications, and secure authentication.`,
 };
 
 export default function ProjectsPage() {

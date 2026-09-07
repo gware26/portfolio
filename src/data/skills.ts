@@ -1,7 +1,6 @@
 export interface Skill {
   name: string;
   icon: string;
-  level: "Beginner" | "Intermediate" | "Advanced" | "Expert";
   detail: string;
 }
 
@@ -14,59 +13,62 @@ export interface SkillCategory {
 
 export const skills: SkillCategory[] = [
   {
-    name: "Frontend",
+    name: "Programming Languages",
     icon: "layout",
-    description: "Interfaces, component systems, accessibility, and motion.",
+    description: "Core languages used across full-stack and scripting work.",
     skills: [
-      { name: "React", icon: "React", level: "Advanced", detail: "Component architecture and hooks" },
-      { name: "Next.js", icon: "Next", level: "Advanced", detail: "App Router and performance" },
-      { name: "TypeScript", icon: "TS", level: "Advanced", detail: "Typed UI and data contracts" },
-      { name: "Tailwind CSS", icon: "TW", level: "Advanced", detail: "Responsive design systems" },
-      { name: "Framer Motion", icon: "FM", level: "Intermediate", detail: "Scroll and interaction polish" },
+      { name: "JavaScript", icon: "JS", detail: "Core language for full-stack development" },
+      { name: "TypeScript", icon: "TS", detail: "Typed JavaScript for safer codebases" },
+      { name: "Python", icon: "PY", detail: "Scripting and problem solving" },
+      { name: "C#", icon: "C#", detail: "Object-oriented programming" },
+      { name: "SQL", icon: "SQL", detail: "Relational queries and data modeling" },
     ],
   },
   {
-    name: "Backend",
+    name: "Frameworks",
     icon: "server",
-    description: "APIs, validation, authentication flows, and service design.",
+    description: "Libraries and frameworks for building full-stack applications.",
     skills: [
-      { name: "Node.js", icon: "ND", level: "Advanced", detail: "REST services and tooling" },
-      { name: "Express", icon: "EX", level: "Advanced", detail: "Routing and middleware" },
-      { name: "Python", icon: "PY", level: "Intermediate", detail: "Scripting and problem solving" },
-      { name: "Zod", icon: "ZD", level: "Intermediate", detail: "Runtime validation" },
+      { name: "React", icon: "RC", detail: "Component-based UI development" },
+      { name: "Node.js", icon: "ND", detail: "Server-side JavaScript runtime" },
+      { name: "Express.js", icon: "EX", detail: "REST API routing and middleware" },
+      { name: "Bootstrap", icon: "BS", detail: "Responsive UI components" },
     ],
   },
   {
-    name: "Database",
+    name: "Databases",
     icon: "database",
-    description: "Schemas, queries, relationships, and durable application data.",
+    description: "Data storage and modeling across relational and document stores.",
     skills: [
-      { name: "PostgreSQL", icon: "PG", level: "Intermediate", detail: "Relational modeling" },
-      { name: "MongoDB", icon: "DB", level: "Intermediate", detail: "Document data models" },
-      { name: "Prisma", icon: "PR", level: "Intermediate", detail: "Typed database access" },
-      { name: "SQL", icon: "SQL", level: "Intermediate", detail: "Queries and normalization" },
+      { name: "MongoDB", icon: "MG", detail: "Document-based data models" },
+      { name: "MySQL", icon: "MY", detail: "Relational database design" },
     ],
   },
   {
-    name: "Tools",
+    name: "Tools & DevOps",
     icon: "wrench",
-    description: "The practical workflow around shipping and maintaining software.",
+    description: "The practical workflow around building, testing, and shipping software.",
     skills: [
-      { name: "Git", icon: "Git", level: "Advanced", detail: "Branching and review habits" },
-      { name: "Vercel", icon: "VC", level: "Advanced", detail: "Deployment and previews" },
-      { name: "Figma", icon: "FG", level: "Intermediate", detail: "Design handoff and UI critique" },
-      { name: "ESLint", icon: "ES", level: "Intermediate", detail: "Code quality guardrails" },
+      { name: "Git", icon: "GIT", detail: "Version control and branching" },
+      { name: "GitHub", icon: "GH", detail: "Collaboration and code hosting" },
+      { name: "Docker", icon: "DK", detail: "Containerized environments" },
+      { name: "VS Code", icon: "VS", detail: "Primary development environment" },
+      { name: "Postman", icon: "PM", detail: "API testing and documentation" },
+      { name: "Figma", icon: "FG", detail: "Design handoff and UI review" },
     ],
   },
   {
-    name: "Soft Skills",
+    name: "Concepts & Soft Skills",
     icon: "users",
-    description: "The collaboration habits that make engineering work better.",
+    description: "The engineering concepts and collaboration habits behind the code.",
     skills: [
-      { name: "Problem Solving", icon: "PS", level: "Advanced", detail: "Break down ambiguous work" },
-      { name: "Communication", icon: "CM", level: "Advanced", detail: "Clear updates and tradeoffs" },
-      { name: "Teamwork", icon: "TM", level: "Advanced", detail: "Reliable collaboration" },
-      { name: "Adaptability", icon: "AD", level: "Advanced", detail: "Learn quickly under change" },
+      { name: "REST APIs", icon: "API", detail: "Designing secure, structured endpoints" },
+      { name: "JWT Authentication", icon: "JWT", detail: "Role-based, token-based auth flows" },
+      { name: "Responsive Design", icon: "RD", detail: "Layouts that adapt across devices" },
+      { name: "OOP", icon: "OOP", detail: "Object-oriented programming" },
+      { name: "Database Design", icon: "DB", detail: "Schema and relationship modeling" },
+      { name: "Problem Solving", icon: "PS", detail: "Strong problem-solver and fast learner" },
+      { name: "Communication", icon: "CM", detail: "Effective communication and collaboration in team environments" },
     ],
   },
 ];

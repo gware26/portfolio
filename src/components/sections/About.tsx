@@ -13,22 +13,22 @@ export default function About() {
       <Container size="xl">
         <SectionHeading
           align="left"
-          subtitle="[Part 01 / 05] About"
+          subtitle="[Part 01 / 06] About"
           title={aboutContent.title}
           description={aboutContent.summary}
         />
 
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <Reveal className="relative">
-            <div className="absolute -bottom-3 -right-3 h-full w-full rounded-lg border border-foreground bg-accent" aria-hidden="true" />
-            <div className="relative aspect-[4/5] overflow-hidden rounded-lg border border-foreground bg-card shadow-[8px_8px_0_hsl(var(--foreground))]">
+            <div className="absolute -bottom-3 -right-3 h-full w-full rounded-2xl border border-foreground bg-accent" aria-hidden="true" />
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-foreground bg-card shadow-[8px_8px_0_hsl(var(--foreground)),0_24px_48px_-20px_rgba(0,0,0,0.35)]">
               <Image
-                src="/image/gud_image.jpg"
+                src="/image/gudina-profile.jpg"
                 alt={`${siteConfig.fullName} portrait`}
                 fill
                 priority
                 sizes="(min-width: 1024px) 480px, 100vw"
-                className="object-cover"
+                className="object-cover object-top"
               />
             </div>
           </Reveal>

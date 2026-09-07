@@ -4,7 +4,7 @@ import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Experience",
-  description: `${siteConfig.fullName}'s study, project, open-source, and certification experience.`,
+  description: `${siteConfig.fullName}'s professional experience as a Website Developer building full-stack MERN applications.`,
 };
 
 export default function ExperiencePage() {

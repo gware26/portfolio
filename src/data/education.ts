@@ -11,6 +11,14 @@ export interface Education {
   coursework: string[];
   highlights: string[];
   description?: string;
+  accreditation?: {
+    body: string;
+    bodyShort: string;
+    summary: string;
+    validFrom: string;
+    validTo: string;
+    fileUrl: string;
+  };
 }
 
 export const education: Education[] = [
@@ -18,11 +26,20 @@ export const education: Education[] = [
     id: "1",
     degree: "Bachelor of Science",
     field: "Information Science",
-    institution: "Jimma University",
+    institution: "Jimma University — Faculty of Computing & Informatics",
     location: "Jimma, Ethiopia",
     startDate: "2022-09",
     endDate: "2026-07",
     current: true,
+    accreditation: {
+      body: "High Council for the Evaluation of Research and Higher Education",
+      bodyShort: "Hcéres",
+      summary:
+        "The BSc in Information Science at Jimma University (Faculty of Computing and Informatics, Jimma Institute of Technology) is internationally accredited by Hcéres for five years.",
+      validFrom: "2026-07-02",
+      validTo: "2031-07-02",
+      fileUrl: "/docs/hceres-accreditation.jpg",
+    },
     coursework: [
       "Data Structures and Algorithms",
       "Database Management Systems",

@@ -3,7 +3,7 @@
 import * as React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
-import { CheckCircle2, Mail, MapPin, Send } from "lucide-react";
+import { CheckCircle2, Mail, MapPin, Phone, Send } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -86,6 +86,20 @@ export default function Contact() {
               <Card>
                 <CardContent className="flex items-center gap-4 p-5">
                   <div className="grid h-11 w-11 place-items-center rounded-md border border-foreground bg-accent text-accent-foreground">
+                    <Phone className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="font-black">Phone</p>
+                    <a className="text-sm font-semibold text-muted-foreground hover:text-foreground" href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`}>
+                      {siteConfig.phone}
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="flex items-center gap-4 p-5">
+                  <div className="grid h-11 w-11 place-items-center rounded-md border border-foreground bg-primary text-primary-foreground">
                     <MapPin className="h-5 w-5" />
                   </div>
                   <div>

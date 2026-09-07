@@ -23,25 +23,27 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.fullName} - Software Engineer Portfolio`,
+    default: `${siteConfig.fullName} - ${siteConfig.title}`,
     template: `%s - ${siteConfig.fullName}`,
   },
   description: siteConfig.description,
   applicationName: `${siteConfig.fullName} Portfolio`,
   keywords: [
-    "Software Engineer",
-    "Information Science",
+    "Information Scientist",
+    "Software Developer",
     "Jimma University",
-    "Frontend Developer",
+    "MERN Stack",
     "Full Stack Developer",
-    "Next.js",
     "React",
-    "TypeScript",
+    "Node.js",
+    "MongoDB",
+    "PHP",
+    "MySQL",
   ],
   authors: [{ name: siteConfig.fullName }],
   creator: siteConfig.fullName,
   openGraph: {
-    title: `${siteConfig.fullName} - Software Engineer Portfolio`,
+    title: `${siteConfig.fullName} - ${siteConfig.title}`,
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: `${siteConfig.fullName} Portfolio`,
@@ -50,7 +52,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.fullName} - Software Engineer Portfolio`,
+    title: `${siteConfig.fullName} - ${siteConfig.title}`,
     description: siteConfig.description,
   },
   icons: {
@@ -70,6 +72,7 @@ export default function RootLayout({
     name: siteConfig.fullName,
     jobTitle: siteConfig.title,
     email: siteConfig.email,
+    telephone: siteConfig.phone,
     url: siteConfig.url,
     address: {
       "@type": "PostalAddress",

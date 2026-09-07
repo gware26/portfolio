@@ -5,7 +5,7 @@ import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "About",
-  description: `Learn about ${siteConfig.fullName}, an Information Science student at Jimma University focused on software engineering.`,
+  description: `Learn about ${siteConfig.fullName}, an Information Scientist & Software Developer building full-stack MERN and PHP/MySQL applications.`,
 };
 
 export default function AboutPage() {
