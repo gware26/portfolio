@@ -56,8 +56,8 @@ function ProjectCard({ project }: { project: Project }) {
   const hasLinks = Boolean(project.github || project.liveDemo);
 
   return (
-    <Card className="group h-full overflow-hidden">
-      <div className="relative aspect-[16/9] overflow-hidden border-b border-foreground bg-secondary">
+    <Card className="group flex h-full flex-col overflow-hidden">
+      <div className="relative aspect-[16/9] shrink-0 overflow-hidden border-b border-foreground bg-secondary">
         {project.image ? (
           <Image
             src={project.image}
@@ -74,7 +74,7 @@ function ProjectCard({ project }: { project: Project }) {
         {project.featured ? <Badge className="absolute left-4 top-4">Featured</Badge> : null}
       </div>
 
-      <CardContent className="flex h-full flex-col gap-5 p-6">
+      <CardContent className="flex flex-1 flex-col gap-5 p-6">
         <div>
           <div className="mb-3 flex items-center justify-between gap-4 text-sm text-muted-foreground">
             <span className="font-mono font-bold uppercase">{project.kicker}</span>

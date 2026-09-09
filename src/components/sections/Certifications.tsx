@@ -36,14 +36,14 @@ export default function Certifications() {
         <div className="grid gap-6 md:grid-cols-2">
           {certifications.map((cert, index) => (
             <Reveal key={cert.id} delay={index * 0.06}>
-              <Card className="group h-full overflow-hidden">
+              <Card className="group flex h-full flex-col overflow-hidden">
                 {cert.imageUrl ? (
                   <a
                     href={cert.fileUrl ?? cert.imageUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Open ${cert.name} certificate`}
-                    className="relative block aspect-[4/3] overflow-hidden border-b border-foreground bg-secondary"
+                    className="relative block aspect-[4/3] shrink-0 overflow-hidden border-b border-foreground bg-secondary"
                   >
                     <Image
                       src={cert.imageUrl}
@@ -54,7 +54,7 @@ export default function Certifications() {
                     />
                   </a>
                 ) : null}
-                <CardContent className="flex h-full flex-col gap-5 p-6">
+                <CardContent className="flex flex-1 flex-col gap-5 p-6">
                   <div className="flex items-start gap-4">
                     <div className="grid h-12 w-12 shrink-0 place-items-center rounded-md border border-foreground bg-primary text-primary-foreground">
                       <Award className="h-5 w-5" />
