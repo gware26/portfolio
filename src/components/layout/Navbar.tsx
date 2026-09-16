@@ -17,10 +17,6 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
   const pathname = usePathname();
 
-  React.useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
-
   return (
     <motion.header
       initial={{ y: -24, opacity: 0 }}
@@ -89,6 +85,7 @@ export default function Navbar() {
                 <Link
                   key={item.name}
                   href={item.href}
+                  onClick={() => setIsOpen(false)}
                   className="rounded-md border border-foreground bg-card px-3 py-3 text-sm font-bold uppercase text-foreground hover:bg-secondary"
                 >
                   {item.name}

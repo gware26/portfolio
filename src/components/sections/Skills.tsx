@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/motion";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { SkillIcon } from "@/components/ui/skill-icon";
 import { skills, type SkillCategory } from "@/data/skills";
 
 function CategoryIcon({ icon }: { icon: SkillCategory["icon"] }) {
@@ -52,8 +53,8 @@ export default function Skills() {
                         className="rounded-md border border-foreground bg-background p-3 transition-colors group-hover:bg-secondary"
                       >
                         <div className="flex min-w-0 items-center gap-3">
-                          <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md border border-foreground bg-card text-[10px] font-black text-foreground">
-                            {skill.icon}
+                          <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md border border-foreground bg-card text-foreground">
+                            <SkillIcon icon={skill.icon} />
                           </span>
                           <div className="min-w-0">
                             <p className="font-black">{skill.name}</p>

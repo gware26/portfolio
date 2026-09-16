@@ -17,6 +17,18 @@ function formatDate(date: string) {
   }).format(new Date(`${date}-01T00:00:00.000Z`));
 }
 
+function formatPeriod(edu: { startDate: string; endDate: string; current: boolean }) {
+  const end = new Date(`${edu.endDate}-01T00:00:00.000Z`);
+  const endHasPassed = end.getTime() < Date.now();
+
+  // "Expected <past date>" reads as stale; fall back to a neutral year range.
+  if (edu.current && endHasPassed) {
+    return `${edu.startDate.slice(0, 4)} – ${edu.endDate.slice(0, 4)}`;
+  }
+  if (edu.current) return `${formatDate(edu.startDate)} – Expected ${formatDate(edu.endDate)}`;
+  return `${formatDate(edu.startDate)} – ${formatDate(edu.endDate)}`;
+}
+
 export default function Education() {
   return (
     <section id="education" className="border-b border-foreground py-24 lg:py-32">
@@ -51,7 +63,7 @@ export default function Education() {
                     </p>
                     <p className="flex items-center gap-2">
                       <CalendarDays className="h-4 w-4 text-accent" />
-                      {formatDate(edu.startDate)} - {edu.current ? `Expected ${formatDate(edu.endDate)}` : formatDate(edu.endDate)}
+                      {formatPeriod(edu)}
                     </p>
                   </div>
                   {edu.description ? (

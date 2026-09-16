@@ -56,10 +56,6 @@ export const metadata: Metadata = {
     title: `${siteConfig.fullName} - ${siteConfig.title}`,
     description: siteConfig.description,
   },
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
-  },
 };
 
 export default function RootLayout({

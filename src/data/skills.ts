@@ -1,6 +1,32 @@
+﻿export type SkillIcon =
+  | "javascript"
+  | "typescript"
+  | "python"
+  | "csharp"
+  | "sql"
+  | "react"
+  | "nodejs"
+  | "express"
+  | "bootstrap"
+  | "mongodb"
+  | "mysql"
+  | "git"
+  | "github"
+  | "docker"
+  | "vscode"
+  | "postman"
+  | "figma"
+  | "api"
+  | "jwt"
+  | "responsive"
+  | "oop"
+  | "database"
+  | "problem-solving"
+  | "communication";
+
 export interface Skill {
   name: string;
-  icon: string;
+  icon: SkillIcon;
   detail: string;
 }
 
@@ -17,11 +43,11 @@ export const skills: SkillCategory[] = [
     icon: "layout",
     description: "Core languages used across full-stack and scripting work.",
     skills: [
-      { name: "JavaScript", icon: "JS", detail: "Core language for full-stack development" },
-      { name: "TypeScript", icon: "TS", detail: "Typed JavaScript for safer codebases" },
-      { name: "Python", icon: "PY", detail: "Scripting and problem solving" },
-      { name: "C#", icon: "C#", detail: "Object-oriented programming" },
-      { name: "SQL", icon: "SQL", detail: "Relational queries and data modeling" },
+      { name: "JavaScript", icon: "javascript", detail: "Core language for full-stack development" },
+      { name: "TypeScript", icon: "typescript", detail: "Typed JavaScript for safer codebases" },
+      { name: "Python", icon: "python", detail: "Scripting and problem solving" },
+      { name: "C#", icon: "csharp", detail: "Object-oriented programming" },
+      { name: "SQL", icon: "sql", detail: "Relational queries and data modeling" },
     ],
   },
   {
@@ -29,10 +55,10 @@ export const skills: SkillCategory[] = [
     icon: "server",
     description: "Libraries and frameworks for building full-stack applications.",
     skills: [
-      { name: "React", icon: "RC", detail: "Component-based UI development" },
-      { name: "Node.js", icon: "ND", detail: "Server-side JavaScript runtime" },
-      { name: "Express.js", icon: "EX", detail: "REST API routing and middleware" },
-      { name: "Bootstrap", icon: "BS", detail: "Responsive UI components" },
+      { name: "React", icon: "react", detail: "Component-based UI development" },
+      { name: "Node.js", icon: "nodejs", detail: "Server-side JavaScript runtime" },
+      { name: "Express.js", icon: "express", detail: "REST API routing and middleware" },
+      { name: "Bootstrap", icon: "bootstrap", detail: "Responsive UI components" },
     ],
   },
   {
@@ -40,8 +66,8 @@ export const skills: SkillCategory[] = [
     icon: "database",
     description: "Data storage and modeling across relational and document stores.",
     skills: [
-      { name: "MongoDB", icon: "MG", detail: "Document-based data models" },
-      { name: "MySQL", icon: "MY", detail: "Relational database design" },
+      { name: "MongoDB", icon: "mongodb", detail: "Document-based data models" },
+      { name: "MySQL", icon: "mysql", detail: "Relational database design" },
     ],
   },
   {
@@ -49,12 +75,12 @@ export const skills: SkillCategory[] = [
     icon: "wrench",
     description: "The practical workflow around building, testing, and shipping software.",
     skills: [
-      { name: "Git", icon: "GIT", detail: "Version control and branching" },
-      { name: "GitHub", icon: "GH", detail: "Collaboration and code hosting" },
-      { name: "Docker", icon: "DK", detail: "Containerized environments" },
-      { name: "VS Code", icon: "VS", detail: "Primary development environment" },
-      { name: "Postman", icon: "PM", detail: "API testing and documentation" },
-      { name: "Figma", icon: "FG", detail: "Design handoff and UI review" },
+      { name: "Git", icon: "git", detail: "Version control and branching" },
+      { name: "GitHub", icon: "github", detail: "Collaboration and code hosting" },
+      { name: "Docker", icon: "docker", detail: "Containerized environments" },
+      { name: "VS Code", icon: "vscode", detail: "Primary development environment" },
+      { name: "Postman", icon: "postman", detail: "API testing and documentation" },
+      { name: "Figma", icon: "figma", detail: "Design handoff and UI review" },
     ],
   },
   {
@@ -62,13 +88,13 @@ export const skills: SkillCategory[] = [
     icon: "users",
     description: "The engineering concepts and collaboration habits behind the code.",
     skills: [
-      { name: "REST APIs", icon: "API", detail: "Designing secure, structured endpoints" },
-      { name: "JWT Authentication", icon: "JWT", detail: "Role-based, token-based auth flows" },
-      { name: "Responsive Design", icon: "RD", detail: "Layouts that adapt across devices" },
-      { name: "OOP", icon: "OOP", detail: "Object-oriented programming" },
-      { name: "Database Design", icon: "DB", detail: "Schema and relationship modeling" },
-      { name: "Problem Solving", icon: "PS", detail: "Strong problem-solver and fast learner" },
-      { name: "Communication", icon: "CM", detail: "Effective communication and collaboration in team environments" },
+      { name: "REST APIs", icon: "api", detail: "Designing secure, structured endpoints" },
+      { name: "JWT Authentication", icon: "jwt", detail: "Role-based, token-based auth flows" },
+      { name: "Responsive Design", icon: "responsive", detail: "Layouts that adapt across devices" },
+      { name: "OOP", icon: "oop", detail: "Object-oriented programming" },
+      { name: "Database Design", icon: "database", detail: "Schema and relationship modeling" },
+      { name: "Problem Solving", icon: "problem-solving", detail: "Strong problem-solver and fast learner" },
+      { name: "Communication", icon: "communication", detail: "Effective communication and collaboration in team environments" },
     ],
   },
 ];

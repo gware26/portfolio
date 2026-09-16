@@ -3,7 +3,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/motion";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { experience } from "@/data/experience";
+import { experience, type Experience as ExperienceItem } from "@/data/experience";
+import { cn } from "@/lib/utils";
+
+const typeLabels: Record<ExperienceItem["type"], string> = {
+  work: "Work",
+  education: "Education",
+  project: "Project",
+  certification: "Certification",
+};
 
 function formatDate(date: string) {
   return new Intl.DateTimeFormat("en", {
@@ -14,6 +22,9 @@ function formatDate(date: string) {
 }
 
 export default function Experience() {
+  // The alternating two-column timeline only reads well with 2+ entries.
+  const alternate = experience.length > 1;
+
   return (
     <section id="experience" className="border-b border-foreground bg-secondary py-24 lg:py-32">
       <Container size="xl">
@@ -26,12 +37,27 @@ export default function Experience() {
           />
         </Reveal>
 
-        <div className="relative space-y-6 before:absolute before:left-4 before:top-2 before:h-[calc(100%-1rem)] before:w-px before:bg-foreground md:before:left-1/2">
+        <div
+          className={cn(
+            "relative space-y-6 before:absolute before:left-4 before:top-2 before:h-[calc(100%-1rem)] before:w-px before:bg-foreground",
+            alternate && "md:before:left-1/2"
+          )}
+        >
           {experience.map((item, index) => (
             <Reveal key={item.id} delay={index * 0.04}>
-              <div className="relative grid gap-6 md:grid-cols-2">
-                <div className={index % 2 === 0 ? "md:pr-10" : "md:col-start-2 md:pl-10"}>
-                  <span className="absolute left-2 top-7 z-10 h-5 w-5 rounded-full border-4 border-foreground bg-primary md:left-1/2 md:-translate-x-1/2" />
+              <div className={cn("relative grid gap-6", alternate && "md:grid-cols-2")}>
+                <div
+                  className={cn(
+                    "pl-10",
+                    alternate && (index % 2 === 0 ? "md:pl-0 md:pr-10" : "md:col-start-2 md:pl-10")
+                  )}
+                >
+                  <span
+                    className={cn(
+                      "absolute left-2 top-7 z-10 h-5 w-5 rounded-full border-4 border-foreground bg-primary",
+                      alternate && "md:left-1/2 md:-translate-x-1/2"
+                    )}
+                  />
                   <Card>
                     <CardContent className="p-6">
                       <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
@@ -39,7 +65,7 @@ export default function Experience() {
                           <h3 className="text-xl font-black">{item.title}</h3>
                           <p className="text-muted-foreground">{item.company} - {item.location}</p>
                         </div>
-                        <Badge variant="outline">{item.type}</Badge>
+                        <Badge variant="outline">{typeLabels[item.type]}</Badge>
                       </div>
 
                       <p className="mb-5 font-mono text-sm font-bold text-primary">
