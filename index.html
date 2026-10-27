@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Software Engineer Portfolio</title>
+  <meta name="description" content="Professional portfolio showcasing strict TypeScript, clean CSS architecture, and advanced software engineering case studies.">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="dist/app.js" defer></script>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header__wrapper">
+      <div class="header__logo">Developer.Portfolio</div>
+      <nav class="header__nav" aria-label="Primary Navigation">
+        <a href="#projects" class="header__link">Projects</a>
+        <a href="#contact" class="header__link header__link--cta">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <h1 class="hero__title">Building Scalable Web Applications with <span>TypeScript & Modern Architecture</span></h1>
+      <p class="hero__subtitle">Focused on clean type-safe systems, optimal runtime efficiency, and structured problem solving.</p>
+      <div class="hero__actions">
+        <a href="#projects" class="btn btn--primary">View Architecture Cases</a>
+        <a href="resume.pdf" class="btn btn--secondary" download>Download Resume (PDF)</a>
+      </div>
+    </section>
+
+    <section id="projects" class="projects container" aria-labelledby="projects-heading">
+      <h2 id="projects-heading" class="section-title">Engineered Case Studies</h2>
+      <div id="project-showcase-grid" class="portfolio-grid">
+        <!-- Rendered dynamically by TypeScript Data Layer -->
+        <div class="portfolio-grid__fallback">Loading production cases...</div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="footer">
+    <div class="container footer__wrapper">
+      <p>&copy; 2026 Developer Portfolio. Built natively with TypeScript and BEM CSS.</p>
+      <div class="footer__links">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
