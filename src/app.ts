@@ -2,32 +2,57 @@
 interface ProjectItem {
   id: string;
   title: string;
+  kicker: string;
   description: string;
+  impactMetrics: string;
   tags: string[];
   imagePath: string;
   liveUrl: string;
   sourceUrl: string;
+  liveLabel?: string;
+  sourceLabel?: string;
 }
 
-// In-Memory Project Data Array
+// Production-Grade Curated Flagship Projects
 const PROJECT_COLLECTION: ProjectItem[] = [
   {
-    id: "case-01",
-    title: "High-Performance Data Matrix Engine",
-    description: "Built custom asynchronous streaming modules over vanilla Web APIs, optimization handling for dense UI coordinate parsing frameworks without layout blocks.",
-    tags: ["TypeScript", "Vanilla JS", "CSS Grid"],
-    imagePath: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=640&auto=format&fit=crop&q=80",
-    liveUrl: "https://vercel.app",
-    sourceUrl: "https://github.com"
+    id: "ketari-ai",
+    title: "KETARI AI — Intelligent Recruitment Platform",
+    kicker: "Government Agency Production Experience",
+    description: "Engineered an enterprise recruitment automation engine at Sidama Technology & Innovation Agency. Replaced multi-week manual screening backlogs with an automated candidate-job matching pipeline, 4-tier Role-Based Access Control, and containerized deployment.",
+    impactMetrics: "Sub-100ms query latency on candidate filtering • 4-tier RBAC security • Full Docker & CI workflow",
+    tags: ["Node.js / Express", "MongoDB", "React", "JWT & RBAC", "AI Semantic Matching", "Docker", "REST API"],
+    imagePath: "public/docs/ketari.jpg",
+    liveUrl: "https://gudina.vercel.app",
+    sourceUrl: "https://github.com/gware26/portfolio",
+    liveLabel: "Case Overview ↗",
+    sourceLabel: "View Codebase ‹/›"
   },
   {
-    id: "case-02",
-    title: "Fluid Layout Engine Architecture",
-    description: "An isolated UI structural sandbox executing native CSS custom property layers and strict runtime asset caching mechanics.",
-    tags: ["CSS Architecture", "TypeScript", "ESModules"],
-    imagePath: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=640&auto=format&fit=crop&q=80",
-    liveUrl: "https://vercel.app",
-    sourceUrl: "https://github.com"
+    id: "ethiopath-ai",
+    title: "EthioPath AI — Academic & Career Pathfinder",
+    kicker: "Privacy-First Client-Side AI",
+    description: "Architected a privacy-first academic orientation pathfinder for 100k+ Ethiopian university freshmen, mapping student competencies to 37 national university departments across 8 faculties with 100% on-device client inference.",
+    impactMetrics: "Zero server egress costs • 0ms server network roundtrip • Installable offline PWA",
+    tags: ["Next.js", "TypeScript", "On-Device AI", "PWA Offline", "Modern CSS", "Deterministic Scoring"],
+    imagePath: "public/docs/ethiopath.jpg",
+    liveUrl: "https://ethiopath.vercel.app",
+    sourceUrl: "https://github.com/gware26/portfolio",
+    liveLabel: "Live Application ↗",
+    sourceLabel: "Source Code ‹/›"
+  },
+  {
+    id: "student-voting-system",
+    title: "Campus Union Electronic Voting System",
+    kicker: "Defensive Security & Relational Architecture",
+    description: "Engineered a tamper-resistant electronic voting platform for university elections. Enforced atomic database transactions to guarantee zero duplicate ballots per voter, parameterized PDO queries for 100% SQLi immunity, and synchronized cryptographic CSRF defenses.",
+    impactMetrics: "100% SQLi & CSRF immunity • Zero duplicate ballots via atomic constraints • bcrypt work factor 12",
+    tags: ["PHP PDO", "MySQL", "Atomic Transactions", "bcrypt", "CSRF Protection", "Vanilla JS"],
+    imagePath: "public/docs/voting.png",
+    liveUrl: "https://github.com/gware26/Online_Student_Voting_sytem",
+    sourceUrl: "https://github.com/gware26/Online_Student_Voting_sytem",
+    liveLabel: "Repository Demo ↗",
+    sourceLabel: "Source Code ‹/›"
   }
 ];
 
@@ -45,7 +70,7 @@ export class PortfolioController {
   }
 
   public initializeShowcase(projects: ProjectItem[]): void {
-    // Clear out hardcoded HTML fallbacks safely
+    // Clear out fallback placeholders safely
     this.displayGrid.innerHTML = '';
 
     if (projects.length === 0) {
@@ -73,23 +98,37 @@ export class PortfolioController {
     const banner = document.createElement('img');
     banner.className = 'portfolio-card__banner';
     banner.src = data.imagePath;
-    banner.alt = `Production layout preview for ${data.title}`;
+    banner.alt = `Architecture preview for ${data.title}`;
     banner.loading = 'lazy';
     banner.width = 640;
     banner.height = 360;
+    // Fallback handler if image fails to load
+    banner.onerror = () => {
+      banner.style.display = 'none';
+    };
 
     const contentWrapper = document.createElement('div');
     contentWrapper.className = 'portfolio-card__content';
 
+    // Kicker / Category tag
+    const kickerEl = document.createElement('span');
+    kickerEl.className = 'portfolio-card__kicker';
+    kickerEl.textContent = data.kicker;
+
     const headerTitle = document.createElement('h3');
     headerTitle.className = 'portfolio-card__title';
-    headerTitle.textContent = data.title; // Safe text context insertion prevents runtime injection mutations
+    headerTitle.textContent = data.title;
 
     const summaryPara = document.createElement('p');
     summaryPara.className = 'portfolio-card__description';
     summaryPara.textContent = data.description;
 
-    // Build Tag Chips Array
+    // Metrics Pill
+    const metricsBox = document.createElement('div');
+    metricsBox.className = 'portfolio-card__metrics';
+    metricsBox.innerHTML = `<strong>Technical Impact:</strong> ${data.impactMetrics}`;
+
+    // Tag Tray
     const tagTray = document.createElement('div');
     tagTray.className = 'portfolio-card__tags';
     data.tags.forEach((tagText) => {
@@ -103,15 +142,17 @@ export class PortfolioController {
     const actionsFooter = document.createElement('div');
     actionsFooter.className = 'portfolio-card__footer';
 
-    const liveAnchor = this.createExternalLink(data.liveUrl, 'Live Execution');
-    const sourceAnchor = this.createExternalLink(data.sourceUrl, 'Source Base');
+    const liveAnchor = this.createExternalLink(data.liveUrl, data.liveLabel || 'Live Application ↗', 'btn btn--card btn--card-primary');
+    const sourceAnchor = this.createExternalLink(data.sourceUrl, data.sourceLabel || 'Source Code ‹/›', 'btn btn--card btn--card-secondary');
 
     actionsFooter.appendChild(liveAnchor);
     actionsFooter.appendChild(sourceAnchor);
 
     // Structural Assembly Node Mapping
+    contentWrapper.appendChild(kickerEl);
     contentWrapper.appendChild(headerTitle);
     contentWrapper.appendChild(summaryPara);
+    contentWrapper.appendChild(metricsBox);
     contentWrapper.appendChild(tagTray);
     contentWrapper.appendChild(actionsFooter);
 
@@ -121,13 +162,13 @@ export class PortfolioController {
     return card;
   }
 
-  private createExternalLink(endpointUrl: string, displayLabel: string): HTMLAnchorElement {
+  private createExternalLink(endpointUrl: string, displayLabel: string, customClass: string): HTMLAnchorElement {
     const link = document.createElement('a');
-    link.className = 'portfolio-card__link';
+    link.className = customClass;
     link.href = endpointUrl;
     link.textContent = displayLabel;
     link.target = '_blank';
-    link.rel = 'noopener noreferrer'; // Strict cross-origin window orchestration sandbox
+    link.rel = 'noopener noreferrer';
     return link;
   }
 }
